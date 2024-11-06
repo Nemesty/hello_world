@@ -40,4 +40,11 @@ pub fn main() void {
         std.debug.print("{d} : ", .{i});
         std.debug.print("{s}", .{message});
     }
+
+    // Boucle for
+    const pseudo = [_]u8{ 'N', 'e', 'm', 'e', 's', 't', 'y' };
+    for (pseudo, 0..) |char, index| {
+        std.debug.print("{d}", .{index});
+        std.debug.print(" : {c}\n", .{char});
+    }
 }
