@@ -58,5 +58,15 @@ pub fn main() void {
 
     // Appel d'une fonction
     const resultat = sum(10, 5);
-    std.debug.print("resultat = {d}", .{resultat});
+    std.debug.print("resultat = {d}\n", .{resultat});
+
+    // Nouveau bloque et donc nouvelle portée
+    {
+        // Defer permet d'executer une instruction au moment de quiter un bloque de code
+        // Attention l'odre d'execution des defer est inversés
+        defer std.debug.print("Defer te dit bye 👋\n", .{});
+        defer std.debug.print("Mouhahaha 😛 !\n", .{});
+        std.debug.print("Nous somme dans un nouveau bloque de code\n", .{});
+        std.debug.print("Nous somme ici après le defer et pourtant il aura le dernier mot !\n", .{});
+    }
 }
