@@ -1,5 +1,10 @@
 const std = @import("std");
 
+// Fonction
+fn sum(a: i32, b: i32) i32 {
+    return a + b;
+}
+
 pub fn main() void {
     // Affichage d'un message
     std.debug.print("Salut les gens !\n", .{});
@@ -47,4 +52,8 @@ pub fn main() void {
         std.debug.print("{d}", .{index});
         std.debug.print(" : {c}\n", .{char});
     }
+
+    // Appel d'une fonction
+    const resultat = sum(10, 5);
+    std.debug.print("resultat = {d}", .{resultat});
 }
