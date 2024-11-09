@@ -21,6 +21,9 @@ pub fn main() void {
     current_level += 1;
     std.debug.print("Vous avez atteint le niveau {d}\n", .{current_level});
 
+    // Ignorer une valeur
+    _ = 1 + 1;
+
     // Tableau
     var age = [_]i32{ 32, 1, 33, 4 };
     std.debug.print("age = {d}\n", .{age});
