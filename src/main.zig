@@ -66,7 +66,7 @@ pub fn main() void {
         // Attention l'odre d'execution des defer est inversés
         defer std.debug.print("Defer te dit bye 👋\n", .{});
         defer std.debug.print("Mouhahaha 😛 !\n", .{});
-        std.debug.print("Nous somme dans un nouveau bloque de code\n", .{});
-        std.debug.print("Nous somme ici après le defer et pourtant il aura le dernier mot !\n", .{});
+        std.debug.print("Nous sommes dans un nouveau bloque de code\n", .{});
+        std.debug.print("Nous sommes ici après le defer et pourtant il aura le dernier mot !\n", .{});
     }
 }
