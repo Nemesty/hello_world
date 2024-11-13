@@ -69,4 +69,6 @@ pub fn main() void {
         std.debug.print("Nous sommes dans un nouveau bloque de code\n", .{});
         std.debug.print("Nous sommes ici après le defer et pourtant il aura le dernier mot !\n", .{});
     }
+
+    // Test
 }
