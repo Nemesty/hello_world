@@ -70,6 +70,17 @@ pub fn main() void {
         std.debug.print("Nous sommes ici après le defer et pourtant il aura le dernier mot !\n", .{});
     }
 
-    // Test
-    // Setup git
+    // Switch
+    const days_of_the_week = [_]u8{ 'l', 'm', 'M', 'j', 'v', 's', 'd' };
+    const today = 's';
+    switch (today) {
+        days_of_the_week[0] => std.debug.print("Nou somme lundi", .{}),
+        days_of_the_week[1] => std.debug.print("Nous somme mardi.", .{}),
+        days_of_the_week[2] => std.debug.print("Nous somme mercredi.", .{}),
+        days_of_the_week[3] => std.debug.print("Nous somme jeudi.", .{}),
+        days_of_the_week[4] => std.debug.print("Nous somme vendredi.", .{}),
+        days_of_the_week[5] => std.debug.print("Nous somme samedi.", .{}),
+        days_of_the_week[6] => std.debug.print("Nous somme dimanche.", .{}),
+        else => {},
+    }
 }
