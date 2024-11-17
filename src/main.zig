@@ -11,6 +11,12 @@ test "out of bounds" {
     const tab = [3]u8{23, 2, 91};
     std.debug.print("{}", .{tab[3]});
 }
+// Inatteignable
+test "unreachable" {
+    const x: i32 = 1;
+    const y: u32 = if (x == 2) 5 else unreachable;
+    _ = y;
+}
 
 pub fn main() void {
     // Affichage d'un message
