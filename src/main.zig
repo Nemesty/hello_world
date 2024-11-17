@@ -5,6 +5,13 @@ fn sum(a: i32, b: i32) i32 {
     return a + b;
 }
 
+// Test : zig build test
+test "out of bounds" {
+    // Safety
+    const tab = [3]u8{23, 2, 91};
+    std.debug.print("{}", .{tab[3]});
+}
+
 pub fn main() void {
     // Affichage d'un message
     std.debug.print("Salut les gens !\n", .{});
@@ -83,4 +90,6 @@ pub fn main() void {
         days_of_the_week[6] => std.debug.print("Nous somme dimanche.", .{}),
         else => {},
     }
+
+    
 }
