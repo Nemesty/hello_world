@@ -39,7 +39,6 @@ test "pointer dereference error" {
 }
 
 // ############## MAIN ################
-
 pub fn main() void {
     // Affichage d'un message
     title("Affichage d'un message");
