@@ -5,6 +5,11 @@ fn sum(a: i32, b: i32) i32 {
     return a + b;
 }
 
+// Fonction avec pointeur
+fn incrementPoint(num: *u8) void {
+    num.* += 1;
+}
+
 // Test : zig build test
 test "out of bounds" {
     // Safety
@@ -14,8 +19,13 @@ test "out of bounds" {
 // Inatteignable
 test "unreachable" {
     const x: i32 = 1;
-    const y: u32 = if (x == 2) 5 else unreachable;
+    const y: i32 = if (x == 2) 5 else unreachable;
     _ = y;
+}
+// Pointeur Null
+test "pointer dereference error" {
+    const p: *u8 = undefined;
+    std.debug.print("{}", .{p.*});
 }
 
 pub fn main() void {
@@ -87,15 +97,20 @@ pub fn main() void {
     const days_of_the_week = [_]u8{ 'l', 'm', 'M', 'j', 'v', 's', 'd' };
     const today = 's';
     switch (today) {
-        days_of_the_week[0] => std.debug.print("Nou somme lundi", .{}),
-        days_of_the_week[1] => std.debug.print("Nous somme mardi.", .{}),
-        days_of_the_week[2] => std.debug.print("Nous somme mercredi.", .{}),
-        days_of_the_week[3] => std.debug.print("Nous somme jeudi.", .{}),
-        days_of_the_week[4] => std.debug.print("Nous somme vendredi.", .{}),
-        days_of_the_week[5] => std.debug.print("Nous somme samedi.", .{}),
-        days_of_the_week[6] => std.debug.print("Nous somme dimanche.", .{}),
+        days_of_the_week[0] => std.debug.print("Nou somme lundi\n", .{}),
+        days_of_the_week[1] => std.debug.print("Nous somme mardi.\n", .{}),
+        days_of_the_week[2] => std.debug.print("Nous somme mercredi.\n", .{}),
+        days_of_the_week[3] => std.debug.print("Nous somme jeudi.\n", .{}),
+        days_of_the_week[4] => std.debug.print("Nous somme vendredi.\n", .{}),
+        days_of_the_week[5] => std.debug.print("Nous somme samedi.\n", .{}),
+        days_of_the_week[6] => std.debug.print("Nous somme dimanche.\n", .{}),
         else => {},
     }
 
-    
+    // Pointeurs et reference
+    var x: u8 = 1;
+    std.debug.print("x = {}\n", .{x});
+    incrementPoint(&x);
+    std.debug.print("Incrementation via pointeur, x = {}", .{x});
+
 }
