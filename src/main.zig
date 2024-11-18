@@ -1,6 +1,16 @@
 const std = @import("std");
 
-// Fonction
+// Fonction sans paramètre ni retour
+fn space() void {
+    std.debug.print("\n", .{});
+}
+
+// Fonction avec paramètre sans retour
+fn title(section: []const u8) void {
+    std.debug.print("⭐️ {s}\n", .{section});
+}
+
+// Fonction avec argument et retour
 fn sum(a: i32, b: i32) i32 {
     return a + b;
 }
@@ -30,31 +40,44 @@ test "pointer dereference error" {
 
 pub fn main() void {
     // Affichage d'un message
+    title("Affichage d'un message");
     std.debug.print("Salut les gens !\n", .{});
 
+    space();
+
     // Constante
+    title("Constante");
     const MAX_LIFE = 100;
     std.debug.print("Nombre de vie max = {d}\n", .{MAX_LIFE});
 
+    space();
+
     // Variable
+    title("Variable");
     var current_level: i32 = 8;
+    const LEVEL_MAX = 80;
     std.debug.print("Niveau actuel : {d}\n", .{current_level});
     std.debug.print("Vous tuez un monstre\n", .{});
     std.debug.print("Vous venez de gagner un niveau !\n", .{});
     current_level += 1;
-    std.debug.print("Vous avez atteint le niveau {d}\n", .{current_level});
-
+    std.debug.print("Vous avez atteint le niveau {d}/{d}\n", .{current_level, LEVEL_MAX});
     // Ignorer une valeur
     _ = 1 + 1;
 
+    space();
+
     // Tableau
+    title("Tableau");
     var age = [_]i32{ 32, 1, 33, 4 };
     std.debug.print("age = {d}\n", .{age});
     age[1] = 10;
     std.debug.print("age après = {d}\n", .{age});
     std.debug.print("Il y a {d} élément(s) dans le tableau age\n", .{age.len});
 
+    space();
+
     // Condition
+    title("Condition");
     if (age[0] >= 18) {
         std.debug.print("Tu as {d} ans, tu es donc majeur.\n", .{age[0]});
         std.debug.print("Tu peux donc rentrer 👍\n", .{});
@@ -63,28 +86,40 @@ pub fn main() void {
         std.debug.print("Tu ne peux donc pas rentrer.", .{});
     }
 
+    space();
+
     // Boucle While
+    title("Boucle While");
     const message = "Je ne dois pas montrer mes fesses en publique.\n";
-    const times = 10;
+    const times = 5;
     var i: i32 = 0;
     while (i <= times) : (i += 1) {
         std.debug.print("{d} : ", .{i});
         std.debug.print("{s}", .{message});
     }
 
+    space();
+
     // Boucle For
+    title("Boucle For");
     const pseudo = [_]u8{ 'N', 'e', 'm', 'e', 's', 't', 'y' };
     for (pseudo, 0..) |char, index| {
         std.debug.print("{d}", .{index});
         std.debug.print(" : {c}\n", .{char});
     }
 
+    space();
+
     // Appel d'une fonction
+    title("Appel d'une fonction");
     const resultat = sum(10, 5);
     std.debug.print("resultat = {d}\n", .{resultat});
 
+    space();
+
     // Nouveau bloque et donc nouvelle portée
     {
+        title("Defer");
         // Defer permet d'executer une instruction au moment de quiter un bloque de code
         // Attention l'odre d'execution des defer est inversés
         defer std.debug.print("Defer te dit bye 👋\n", .{});
@@ -93,7 +128,10 @@ pub fn main() void {
         std.debug.print("Nous sommes ici après le defer et pourtant il aura le dernier mot !\n", .{});
     }
 
+    space();
+
     // Switch
+    title("Switch");
     const days_of_the_week = [_]u8{ 'l', 'm', 'M', 'j', 'v', 's', 'd' };
     const today = 's';
     switch (today) {
@@ -107,15 +145,23 @@ pub fn main() void {
         else => {},
     }
 
+    space();
+
     // Pointeurs et reference
+    title("Pointeurs et reference");
     var x: u8 = 1;
     std.debug.print("x = {}\n", .{x});
     incrementPoint(&x);
     std.debug.print("Incrementation via pointeur, x = {}\n", .{x});
 
+    space();
+
     // Slice
+    title("Slice");
     const array = [_]u8{ 1, 2, 3, 4 };
     std.debug.print("Array = {d}\n", .{array});
     const slice = array[0..2];
     std.debug.print("Slice = {d}\n", .{slice});
+
+    space();
 }
