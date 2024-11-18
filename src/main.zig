@@ -13,7 +13,7 @@ fn incrementPoint(num: *u8) void {
 // Test : zig build test
 test "out of bounds" {
     // Safety
-    const tab = [3]u8{23, 2, 91};
+    const tab = [3]u8{ 23, 2, 91 };
     std.debug.print("{}", .{tab[3]});
 }
 // Inatteignable
@@ -111,6 +111,11 @@ pub fn main() void {
     var x: u8 = 1;
     std.debug.print("x = {}\n", .{x});
     incrementPoint(&x);
-    std.debug.print("Incrementation via pointeur, x = {}", .{x});
+    std.debug.print("Incrementation via pointeur, x = {}\n", .{x});
 
+    // Slice
+    const array = [_]u8{ 1, 2, 3, 4 };
+    std.debug.print("Array = {d}\n", .{array});
+    const slice = array[0..2];
+    std.debug.print("Slice = {d}\n", .{slice});
 }
