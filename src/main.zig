@@ -165,4 +165,23 @@ pub fn main() void {
     std.debug.print("Slice = {d}\n", .{slice});
 
     space();
+
+    // Enums
+    title("Enums");
+    const Direction = enum {
+        north,
+        south,
+        east,
+        west
+    };
+    const player_direction = Direction.north;
+    switch (player_direction) {
+        Direction.south => std.debug.print("Le joueur marche vers le sud.\n", .{}),
+        Direction.east => std.debug.print("Le joueur marche vers l'est .\n", .{}),
+        Direction.west => std.debug.print("Le joueur marche vers l'ouest.\n", .{}),
+        Direction.north => std.debug.print("Le joueur marche vers le nord.\n", .{}),
+    }
+    std.debug.print("North to int = {d}", .{@intFromEnum(Direction.north)});
+
+    space();
 }
