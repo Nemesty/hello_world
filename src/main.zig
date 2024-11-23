@@ -38,6 +38,18 @@ test "pointer dereference error" {
     std.debug.print("{}", .{p.*});
 }
 
+// Structs création
+const Vec3 = struct {
+    x: f32 = 0,
+    y: f32 = 0,
+    z: f32 = 0,
+    fn swapXY(self: *Vec3) void {
+        const tmp = self.x;
+        self.x = self.y;
+        self.y = tmp;
+    }
+};
+
 // ############## MAIN ################
 pub fn main() void {
     // Affichage d'un message
@@ -61,7 +73,7 @@ pub fn main() void {
     std.debug.print("Vous tuez un monstre\n", .{});
     std.debug.print("Vous venez de gagner un niveau !\n", .{});
     current_level += 1;
-    std.debug.print("Vous avez atteint le niveau {d}/{d}\n", .{current_level, LEVEL_MAX});
+    std.debug.print("Vous avez atteint le niveau {d}/{d}\n", .{ current_level, LEVEL_MAX });
     // Ignorer une valeur
     _ = 1 + 1;
 
@@ -168,12 +180,7 @@ pub fn main() void {
 
     // Enums
     title("Enums");
-    const Direction = enum {
-        north,
-        south,
-        east,
-        west
-    };
+    const Direction = enum { north, south, east, west };
     const player_direction = Direction.north;
     switch (player_direction) {
         Direction.south => std.debug.print("Le joueur marche vers le sud.\n", .{}),
@@ -181,7 +188,16 @@ pub fn main() void {
         Direction.west => std.debug.print("Le joueur marche vers l'ouest.\n", .{}),
         Direction.north => std.debug.print("Le joueur marche vers le nord.\n", .{}),
     }
-    std.debug.print("North to int = {d}", .{@intFromEnum(Direction.north)});
+    std.debug.print("North to int = {d}\n", .{@intFromEnum(Direction.north)});
 
     space();
+
+    // Structs utilisation
+    title("Structs utilisation");
+    var my_vector = Vec3{
+        .y = 100,
+        .z = 50,
+    };
+    my_vector.swapXY();
+    std.debug.print("Le vecteur x = {d} et y = {d}\n", .{my_vector.x, my_vector.y});
 }
