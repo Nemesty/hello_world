@@ -50,6 +50,18 @@ const Vec3 = struct {
     }
 };
 
+// Unions création
+const MyUnion = union(enum) {
+    intVal: i8,
+    floatVal: f64,
+    fn print(self: MyUnion) void {
+        switch (self) {
+            .intVal => std.debug.print("intVal = {}\n", .{self.intVal}),
+            .floatVal => std.debug.print("floatVal = {}\n", .{self.floatVal}),
+        }
+    }
+};
+
 // ############## MAIN ################
 pub fn main() void {
     // Affichage d'un message
@@ -199,5 +211,14 @@ pub fn main() void {
         .z = 50,
     };
     my_vector.swapXY();
-    std.debug.print("Le vecteur x = {d} et y = {d}\n", .{my_vector.x, my_vector.y});
+    std.debug.print("Le vecteur x = {d} et y = {d}\n", .{ my_vector.x, my_vector.y });
+
+    space();
+
+    // Unions utilisation
+    title("Unions utilisaiton");
+    var my_union: MyUnion = MyUnion{ .intVal = 33 };
+    my_union.print();
+    my_union = MyUnion{.floatVal = 3.14};
+    my_union.print();
 }
