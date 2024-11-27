@@ -221,4 +221,16 @@ pub fn main() void {
     my_union.print();
     my_union = MyUnion{.floatVal = 3.14};
     my_union.print();
+
+    space();
+
+    // Bloc labelisé
+    title("Bloc labelisé");
+    const count = label: {
+        var sumb: u32 = 0;
+        var ib: u32 = 0;
+        while (ib < 10) : (ib += 1) sumb += ib;
+        break :label sumb;
+    };
+    std.debug.print("Count = {}\n", .{count});
 }
