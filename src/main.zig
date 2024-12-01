@@ -73,6 +73,12 @@ fn rangeHasNumber(begin: usize, end: usize, number: usize) bool {
     } else false;
 }
 
+// Optionels création
+fn readFile(path: []const u8) ?[]const u8 {
+    const file = std.fs.cwd().openFile(path, .{}) catch return null;
+    return file.readToEndAlloc(std.heap.page_allocator, std.math.maxInt(usize)) catch null;
+}
+
 // ############## MAIN ################
 pub fn main() void {
     // Affichage d'un message
@@ -265,4 +271,16 @@ pub fn main() void {
     title("Boucle en tant qu'expression");
     const result = rangeHasNumber(0, 10, 12);
     std.debug.print("Result = {}\n", .{result});
+
+    space();
+
+    // Optionels utilisation
+    title("Optionels utilisaiton");
+    const content = readFile("assets/test.txt");
+
+    if (content) |data| {
+        std.debug.print("Contenu du fichier :\n{s}\n", .{data});
+    } else {
+        std.debug.print("Le fichier n'existe pas ou erreur de lecture.\n", .{});
+    }
 }
