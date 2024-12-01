@@ -233,4 +233,18 @@ pub fn main() void {
         break :label sumb;
     };
     std.debug.print("Count = {}\n", .{count});
+
+    space();
+
+    // Boucle labelisée
+    title("Boucle labelisée");
+    var countb: usize = 0;
+    outer: for ([_]i32{1,2,3,4,5,6,7,8}) |_| {
+        for ([_]i32{1,2,3,4,5}) |_| {
+            countb += 1;
+            std.debug.print("Depuis la sous boucle, countb = {}\n", .{countb});
+            // Les itérations de la boucle interieur sont ici ignorée
+            continue :outer;
+        }
+    }
 }
