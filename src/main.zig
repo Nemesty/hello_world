@@ -62,6 +62,17 @@ const MyUnion = union(enum) {
     }
 };
 
+// Boucle en tant qu'expression création
+fn rangeHasNumber(begin: usize, end: usize, number: usize) bool {
+    var i = begin;
+    // Les boucles en Zig possèdent le mot clé else
+    return while (i < end) : (i += 1) {
+        if (i == number) {
+            break true;
+        }
+    } else false;
+}
+
 // ############## MAIN ################
 pub fn main() void {
     // Affichage d'un message
@@ -247,4 +258,11 @@ pub fn main() void {
             continue :outer;
         }
     }
+
+    space();
+
+    // Boucle en tant qu'expression utilisation
+    title("Boucle en tant qu'expression");
+    const result = rangeHasNumber(0, 10, 12);
+    std.debug.print("Result = {}\n", .{result});
 }
