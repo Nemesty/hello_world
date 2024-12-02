@@ -277,7 +277,6 @@ pub fn main() void {
     // Optionels utilisation
     title("Optionels utilisaiton");
     const content = readFile("assets/test.txt");
-
     if (content) |data| {
         std.debug.print("Contenu du fichier :\n{s}\n", .{data});
     } else {
