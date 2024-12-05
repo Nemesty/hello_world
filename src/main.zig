@@ -79,6 +79,11 @@ fn readFile(path: []const u8) ?[]const u8 {
     return file.readToEndAlloc(std.heap.page_allocator, std.math.maxInt(usize)) catch null;
 }
 
+// Comptime création
+fn add(comptime T: type, a: T, b: T) T {
+    return a + b;
+}
+
 // ############## MAIN ################
 pub fn main() void {
     // Affichage d'un message
@@ -282,4 +287,11 @@ pub fn main() void {
     } else {
         std.debug.print("Le fichier n'existe pas ou erreur de lecture.\n", .{});
     }
+
+    space();
+
+    // Comptime utilisation
+    title("Comptime");
+    const resultb = add(i16, 2, 40);
+    std.debug.print("resultb = {}", .{resultb});
 }
