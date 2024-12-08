@@ -314,6 +314,7 @@ pub fn main() void {
     const datab = comptime [_]u8{1, 2, 3, 4, 5};
     const total = blk: {
         var sumb: u8 = 0;
+        // Déroulement de la boucle au moment de la compilation
         inline for(datab) |val| {
             sumb += val;
         }
