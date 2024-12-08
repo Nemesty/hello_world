@@ -150,6 +150,7 @@ pub fn main() void {
     // Boucle For
     title("Boucle For");
     const pseudo = [_]u8{ 'N', 'e', 'm', 'e', 's', 't', 'y' };
+    // Utilisation de Payload Captures
     for (pseudo, 0..) |char, index| {
         std.debug.print("{d}", .{index});
         std.debug.print(" : {c}\n", .{char});
