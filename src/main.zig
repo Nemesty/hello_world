@@ -294,5 +294,15 @@ pub fn main() void {
     // Comptime utilisation
     title("Comptime");
     const resultb = add(i16, 2, 40);
-    std.debug.print("resultb = {}", .{resultb});
+    std.debug.print("resultb = {}\n", .{resultb});
+
+    space();
+
+    // Playload Captures avec pointeur de capture
+    title("Playload Captures avec pointeur de capture");
+    var data = [_]u8{1, 2, 3};
+    for (&data) |*byte| byte.* += 1;
+    for (data) |byte| {
+        std.debug.print("[{}]", .{byte});
+    }
 }
