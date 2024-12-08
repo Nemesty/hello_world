@@ -321,4 +321,23 @@ pub fn main() void {
         break :blk sumb;
     };
     std.debug.print("total = {}\n", .{total});
+
+    space();
+
+    // Structs anonymes
+    title("Structs anonymes");
+    const tuple = .{
+        @as(u32, 314),
+        @as(f64, 3.14),
+        true,
+        "Salut !",
+    } ++ .{"\nPouéte !!!"} ** 2;
+    inline for(tuple, 0..) |value, index| {
+        switch (index) {
+            u32 => std.debug.print("{d} = {any}", .{index, value}),
+            f64 => std.debug.print("{d} = {any}", .{index, value}),
+            bool => std.debug.print("{d} = {any}", .{index, value}),
+            []u8 => std.debug.print("{d} = {s}", .{index, value})
+        }
+    }
 }
