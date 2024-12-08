@@ -305,4 +305,19 @@ pub fn main() void {
     for (data) |byte| {
         std.debug.print("[{}]", .{byte});
     }
+    space();
+
+    space();
+
+    // Boucle inline
+    title("Boucle inline");
+    const datab = comptime [_]u8{1, 2, 3, 4, 5};
+    const total = blk: {
+        var sumb: u8 = 0;
+        inline for(datab) |val| {
+            sumb += val;
+        }
+        break :blk sumb;
+    };
+    std.debug.print("total = {}\n", .{total});
 }
